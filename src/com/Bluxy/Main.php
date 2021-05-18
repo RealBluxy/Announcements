@@ -71,6 +71,8 @@ class Main extends PluginBase implements Listener{
 	}
   
    public function MsgTask() {
+	   
+	   $interval = $this->cfg->get("interval");
      
      //$msg = $this->cfg->get("msg");
      
@@ -89,6 +91,7 @@ class Main extends PluginBase implements Listener{
      $rand = array_rand($msg);
      
      $this->getServer()->broadcastMessage("$rand");
+	   $this->getScheduler()->scheduleRepeatingTask(new Task($this), $interval);
      
    }
 }
