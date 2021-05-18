@@ -1,0 +1,6 @@
+name: Announcements
+main: com\Bluxy\Main
+api:
+- 3.13.0
+Author: Bluxy
+version: 1.0
