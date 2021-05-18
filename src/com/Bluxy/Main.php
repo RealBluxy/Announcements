@@ -32,7 +32,7 @@
 
 declare(strict_types=1);
 
-namespace bluxy;
+namespace com\Bluxy;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -63,7 +63,11 @@ class Main extends PluginBase implements Listener{
         $this->saveResource("config.yml");
         $this->saveDefaultConfig();
         $this->cfg = $this->getConfig();
-      
+     
+	    //creating the task..
+	    
+	     $interval = $this->cfg->get("interval");
+	     $this->getScheduler()->scheduleRepeatingTask(new Task($this), (int) $interval);
     }
 	
     public function onDisable() : void{
@@ -72,7 +76,7 @@ class Main extends PluginBase implements Listener{
   
    public function MsgTask() {
 	   
-	   $interval = $this->cfg->get("interval");
+	   //$interval = $this->cfg->get("interval");
      
      //$msg = $this->cfg->get("msg");
      
@@ -91,7 +95,7 @@ class Main extends PluginBase implements Listener{
      $rand = array_rand($msg);
      
      $this->getServer()->broadcastMessage("$rand");
-	   $this->getScheduler()->scheduleRepeatingTask(new Task($this), $interval);
+	   //$this->getScheduler()->scheduleRepeatingTask(new Task($this), $interval);
      
    }
 }
