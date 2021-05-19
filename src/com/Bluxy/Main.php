@@ -42,6 +42,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\Server;
 use pocketmine\scheduler\Task;
+use com\Bluxy\Task as AnnounTask;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 use pocketmine\item\Item;
@@ -67,7 +68,7 @@ class Main extends PluginBase implements Listener{
 	    //creating the task..
 	    
 	     $interval = $this->cfg->get("interval");
-	     $this->getScheduler()->scheduleRepeatingTask(new Task($this), (int) $interval);
+	     $this->getScheduler()->scheduleRepeatingTask(new AnnounTask($this), (int) $interval);
     }
 	
     public function onDisable() : void{
