@@ -76,16 +76,16 @@ class Main extends PluginBase implements Listener{
   
    public function MsgTask() {
      
-     $msg1 = $this->cfg->get("msg1");
-     $msg2 = $this->cfg->get("msg2");
-     $msg3 = $this->cfg->get("msg3");
-     $msg4 = $this->cfg->get("msg4");
-     $msg5 = $this->cfg->get("msg5");
-     $msg6 = $this->cfg->get("msg6");
-     $msg7 = $this->cfg->get("msg7");
-     $msg8 = $this->cfg->get("msg8");
-     $msg9 = $this->cfg->get("msg9");
-     $msg10 = $this->cfg->get("msg10");
+     $msg[1] = $this->cfg->get("msg1");
+     $msg[2] = $this->cfg->get("msg2");
+     $msg[3] = $this->cfg->get("msg3");
+     $msg[4] = $this->cfg->get("msg4");
+     $msg[5] = $this->cfg->get("msg5");
+     $msg[6] = $this->cfg->get("msg6");
+     $msg[7] = $this->cfg->get("msg7");
+     $msg[8] = $this->cfg->get("msg8");
+     $msg[9] = $this->cfg->get("msg9");
+     $msg[10] = $this->cfg->get("msg10");
      
      $rand = $msg[mt_rand(1,10)];
      
