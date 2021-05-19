@@ -64,22 +64,17 @@ class Main extends PluginBase implements Listener{
         $this->saveResource("config.yml");
         $this->saveDefaultConfig();
         $this->cfg = $this->getConfig();
-     
-	    //creating the task..
 	    
-	     $interval = $this->cfg->get("interval");
-	     $this->getScheduler()->scheduleRepeatingTask(new AnnounTask($this), (int) $interval);
+	$interval = $this->cfg->get("interval");
+	$this->getScheduler()->scheduleRepeatingTask(new AnnounTask($this), (int) $interval);
     }
 	
     public function onDisable() : void{
-		$this->getLogger()->info(TextFormat::DARK_RED . "Announcements was deactivated ! ");
-	}
+	    
+	$this->getLogger()->info(TextFormat::DARK_RED . "Announcements was deactivated ! ");
+	    }
   
    public function MsgTask() {
-	   
-	   //$interval = $this->cfg->get("interval");
-     
-     //$msg = $this->cfg->get("msg");
      
      $msg1 = $this->cfg->get("msg1");
      $msg2 = $this->cfg->get("msg2");
@@ -92,11 +87,9 @@ class Main extends PluginBase implements Listener{
      $msg9 = $this->cfg->get("msg9");
      $msg10 = $this->cfg->get("msg10");
      
-     $msg = array($msg1, $msg2, $msg3, $msg4, $msg5, $msg6, $msg7, $msg8, $msg9, $msg10);
-     $rand = mt_rand(0, count($array) - 1);
+     $rand = $msg[mt_rand(1,10)];
      
-     $this->getServer()->broadcastMessage((string) $rand);
-	   //$this->getScheduler()->scheduleRepeatingTask(new Task($this), $interval);
-     
+     $this->getServer()->broadcastMessage("$rand");
+	   
    }
 }
