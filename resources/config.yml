@@ -20,7 +20,7 @@ interval: 1200
 # The Plugin Cruentlly has  messages , i'm planning on making the amount of messages customaisble !
 
 # Message Number 1
-msg1:"§a Msg1
+msg1: "§a Msg1"
 # Message Number 2
 msg2: "§a Msg2"
 # Message Number 3
