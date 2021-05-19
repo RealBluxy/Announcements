@@ -32,18 +32,18 @@
 
 namespace com\Bluxy;
 
-use pocketmine\scheduler\Task as MsgTask;
+use pocketmine\scheduler\Task as AnnounTask;
 use com\Bluxy\main;
 
 
-class Task extends MsgTask {
+class Task extends AnnounTask {
         public function __construct(Main $plugin) {
               
           $this->plugin = $plugin;
           
         }
 
-        public function onTick() : void {
+        public function onRun($currentTick) {
                 
                 $this->plugin->MsgTask();
           
