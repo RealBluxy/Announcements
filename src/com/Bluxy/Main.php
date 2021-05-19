@@ -95,7 +95,7 @@ class Main extends PluginBase implements Listener{
      $msg = array($msg1, $msg2, $msg3, $msg4, $msg5, $msg6, $msg7, $msg8, $msg9, $msg10);
      $rand = array_rand($msg);
      
-     $this->getServer()->broadcastMessage("$rand");
+     $this->getServer()->broadcastMessage((string) $rand);
 	   //$this->getScheduler()->scheduleRepeatingTask(new Task($this), $interval);
      
    }
