@@ -49,17 +49,10 @@ use pocketmine\item\Item;
 use pocketmine\utils\Config;
 
 class Main extends PluginBase implements Listener{
-  
-  public function onLoad() : void{
-		$this->getLogger()->info(TextFormat::WHITE . "Announcements Loading...");
-	}
 
 
     public function onEnable()
     {
-
-       $this->getLogger()->info(TextFormat::GREEN . "Announcements Enabled");
-
         @mkdir($this->getDataFolder());
         $this->saveResource("config.yml");
         $this->saveDefaultConfig();
@@ -70,8 +63,10 @@ class Main extends PluginBase implements Listener{
     }
 	
     public function onDisable() : void{
-	    
-	$this->getLogger()->info(TextFormat::DARK_RED . "Announcements was deactivated ! ");
+	    @mkdir($this->getDataFolder());
+        $this->saveResource("config.yml");
+        $this->saveDefaultConfig();
+        $this->cfg = $this->getConfig();
 	    }
   
    public function MsgTask() {
