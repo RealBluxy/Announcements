@@ -32,7 +32,7 @@
 
 declare(strict_types=1);
 
-namespace com\Bluxy;
+namespace Bluxy\Announcements;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -42,7 +42,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\Server;
 use pocketmine\scheduler\Task;
-use com\Bluxy\Task as AnnounTask;
+use Bluxy\Announcements\Task as AnnounTask;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 use pocketmine\item\Item;
