@@ -30,10 +30,10 @@
 *
 */
 
-namespace com\Bluxy;
+namespace Bluxy\Announcements;
 
 use pocketmine\scheduler\Task as AnnounTask;
-use com\Bluxy\main;
+use Bluxy\Announcements\main;
 
 
 class Task extends AnnounTask {
