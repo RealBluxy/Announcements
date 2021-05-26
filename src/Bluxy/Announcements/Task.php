@@ -33,7 +33,7 @@
 namespace Bluxy\Announcements;
 
 use pocketmine\scheduler\Task as AnnounTask;
-use Bluxy\Announcements\main;
+use Bluxy\Announcements\Main;
 
 
 class Task extends AnnounTask {
