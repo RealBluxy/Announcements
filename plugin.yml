@@ -1,5 +1,5 @@
 name: Announcements
-main: com\Bluxy\Main
+main: Bluxy\Announcements\Main
 api:
 - 3.13.0
 Author: Bluxy
