@@ -47,6 +47,7 @@ use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 use pocketmine\item\Item;
 use pocketmine\utils\Config;
+use pocketmine\network\protocol\mcpe\PlayerSoundPacket;
 
 class Main extends PluginBase implements Listener{
 
@@ -87,4 +88,81 @@ class Main extends PluginBase implements Listener{
      $this->getServer()->broadcastMessage("$rand");
 	   
    }
+	
+	 public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
+	  
+    switch($command->getName()) {
+		 
+        case "sounds":
+		    //https://www.digminecraft.com/lists/sound_list_pe.php sounds lsit boi
+		    if($sender->hasPermission("Announcements.sounds")){
+	$sender->sendMessage("§a Go To https://www.digminecraft.com/lists/sound_list_pe.php for the sounds list !");
+		}else{
+			$sender->sendMessage("§cYou Don't have the Permission To Use This Command");
+		    }
+            break;
+		     case "ansound":
+		    if($sender->hasPermission("Announce.sound")){
+		    if(isset($args[0])) {
+			    
+		   foreach($this->getServer()->getOnlinePlayers() as $p){
+			   
+		   $pk = PlaySoundPacket;
+		   $pk->soundName = (string) $args[0];
+		   $pk->volume = 1; 
+		   $pk->pitch = 1; 
+		   $pk->disableRelativeVolume = true;
+		   $p->dataPacket($pk);
+			   $sender->sendMessage("§a BroadCasted Sound: §e$args[0]");
+                   }
+		    }else{
+			    $sender->sendMessage("§cUsage: /ansound <soundname> ");
+			    $sender->sendMessage("§aPro Tip: Run The Command '/sounds' To Get a List Of Sound You Can BroadCast!");
+		    }else{
+			    $sender->sendMessage("§cYou Don't have the Permission To Use This Command");
+		    }
+		    }
+		     break;
+		     case "antitle":
+		    if($sender->hasPermission("Announce.title")){
+		    foreach($this->getServer()->getOnlinePlayers() as $p){
+			    if(isset($args[0]) && isset($args[1])) {
+			    $p->addTitle((string) $args[0], (string) $args[0], 5, 30, 5);
+		    }else{
+				    $sender->sendMessage("§cUsage: /antitle <title> <subtitle> ");
+			    }else{
+				    $sender->sendMessage("§cYou Don't have the Permission To Use This Command");
+			    }
+		    }
+		    }
+		     break;
+		     case "anmsg":
+		    if($sender->hasPermission("Announce.msg")){
+		    foreach($this->getServer()->getOnlinePlayers() as $p){
+			    if(isset($args[0])) {
+				    $this->getServer()->broadcastMessage((string) $args[0]);
+			    }else{
+				    $sender->sendMessage("§cUsage: /anmsg <message>");
+				    $sender->sendMessage("§aPro Tip: Use '\n' in your message to skip a line!");
+				    }else{
+				     $sender->sendMessage("§cYou Don't have the Permission To Use This Command");
+			    }
+		    }
+		    }
+		     break;
+		     case "anitem":
+		    if($sender->hasPermission("Announce.item")){
+		    foreach($this->getServer()->getOnlinePlayers() as $p){
+			    if(isset($args[0]) && isset($args[1]) && isset($args[2])) {
+				    $player->getInventory()->addItem(Item::get($args[0], $args[1], $args[2]))->setCustomName((string) $args[3])->setLore([$args[4]]);
+			    }else{
+				     $sender->sendMessage("§cUsage: /anitem <itemid> <item meta (if there isn't set it to 0)> <amount> <item custom name(optional)> <item description (optioanal)>");
+		            }else{
+				     $sender->sendMessage("§cYou Don't have the Permission To Use This Command");
+			    }
+		    }
+		    }
+		      break;
+      
+    }
 }
