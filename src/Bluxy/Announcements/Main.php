@@ -118,51 +118,61 @@ class Main extends PluginBase implements Listener{
 		    }else{
 			    $sender->sendMessage("§cUsage: /ansound <soundname> ");
 			    $sender->sendMessage("§aPro Tip: Run The Command '/sounds' To Get a List Of Sound You Can BroadCast!");
+		    }
+			    
 		    }else{
 			    $sender->sendMessage("§cYou Don't have the Permission To Use This Command");
 		    }
-		    }
+		    
 		     break;
 		     case "antitle":
 		    if($sender->hasPermission("Announce.title")){
-		    foreach($this->getServer()->getOnlinePlayers() as $p){
 			    if(isset($args[0]) && isset($args[1])) {
+		    foreach($this->getServer()->getOnlinePlayers() as $p){
+			   
 			    $p->addTitle((string) $args[0], (string) $args[0], 5, 30, 5);
+			    }
 		    }else{
 				    $sender->sendMessage("§cUsage: /antitle <title> <subtitle> ");
+			    }
 			    }else{
 				    $sender->sendMessage("§cYou Don't have the Permission To Use This Command");
 			    }
-		    }
-		    }
+		    
+		    
 		     break;
 		     case "anmsg":
 		    if($sender->hasPermission("Announce.msg")){
-		    foreach($this->getServer()->getOnlinePlayers() as $p){
 			    if(isset($args[0])) {
+		    foreach($this->getServer()->getOnlinePlayers() as $p){
+			    
 				    $this->getServer()->broadcastMessage((string) $args[0]);
+			    }
 			    }else{
 				    $sender->sendMessage("§cUsage: /anmsg <message>");
 				    $sender->sendMessage("§aPro Tip: Use '\n' in your message to skip a line!");
+			    }
 				    }else{
 				     $sender->sendMessage("§cYou Don't have the Permission To Use This Command");
 			    }
-		    }
-		    }
+		   
 		     break;
 		     case "anitem":
 		    if($sender->hasPermission("Announce.item")){
+			        if(isset($args[0]) && isset($args[1]) && isset($args[2])) {
 		    foreach($this->getServer()->getOnlinePlayers() as $p){
-			    if(isset($args[0]) && isset($args[1]) && isset($args[2])) {
+			
 				    $player->getInventory()->addItem(Item::get($args[0], $args[1], $args[2]))->setCustomName((string) $args[3])->setLore([$args[4]]);
+			    }
 			    }else{
 				     $sender->sendMessage("§cUsage: /anitem <itemid> <item meta (if there isn't set it to 0)> <amount> <item custom name(optional)> <item description (optioanal)>");
-		            }else{
+		            }
+		    }else{
 				     $sender->sendMessage("§cYou Don't have the Permission To Use This Command");
 			    }
-		    }
-		    }
+		  
 		      break;
       
     }
+}
 }
