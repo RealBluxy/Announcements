@@ -102,7 +102,7 @@ class Main extends PluginBase implements Listener {
                             if (isset($args[0])) {
                                 foreach ($this->getServer()->getOnlinePlayers() as $p) {
 					$volume = rand();
-          		$sender->getLevel()->broadcastLevelEvent($p, LevelSoundEventPack::$args[0], (int) $volume) 
+          		$sender->getLevel()->broadcastLevelEvent($p, LevelSoundEventPack::$args[0], (int) $volume); 
 
                                     $sender->sendMessage("§a BroadCasted Sound: §e$args[0]");
                                 }
