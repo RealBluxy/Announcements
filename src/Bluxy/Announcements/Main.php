@@ -99,7 +99,7 @@ class Main extends PluginBase implements Listener {
                         if ($sender->hasPermission("Announce.sound")) {
                             if (isset($args[0])) {
                                 foreach ($this->getServer()->getOnlinePlayers() as $p) {
-                                    $pk = PlaySoundPacket;
+                                    $pk = new PlaySoundPacket;
                                     $pk->soundName = (string)$args[0];
                                     $pk->volume = 1;
                                     $pk->pitch = 1;
@@ -146,7 +146,7 @@ class Main extends PluginBase implements Listener {
                         if ($sender->hasPermission("Announce.item")) {
                             if (isset($args[0]) && isset($args[1]) && isset($args[2])) {
                                 foreach ($this->getServer()->getOnlinePlayers() as $p) {
-                                    $p->getInventory()->addItem(Item::get($args[0], $args[1], $args[2]))->setCustomName((string)$args[3])->setLore([$args[4]]);
+                                    $p->getInventory()->addItem(Item::get($args[0], $args[1], $args[2]))->setCustomName((string) $args[3])->setLore((string) [$args[4]]);
                                 }
                             } else {
                                 $sender->sendMessage("§cUsage: /anitem <itemid> <item meta (if there isn't set it to 0)> <amount> <item custom name(optional)> <item description (optioanal)>");
