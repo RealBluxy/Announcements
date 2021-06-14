@@ -33,11 +33,11 @@
 namespace Bluxy\Announcements;
 
 use pocketmine\scheduler\Task as AnnounTask;
-use Bluxy\Announcements\Main as Main;
+use Bluxy\Announcements\Main;
 
 
 class Task extends AnnounTask {
-        public $plugin
+        
         public function __construct(Main $plugin) {
               
           $this->plugin = $plugin;
