@@ -100,7 +100,7 @@ class Main extends PluginBase implements Listener {
                     case "ansound":
                         if ($sender->hasPermission("Announce.sound")) {
                             if (isset($args[0])) {
-                                foreach ($this->getServer()->getOnlinePlayers() as $p) {
+                                foreach ($sender->getLevel()->getPlayers() as $p) {
 					$volume = rand();
           		$sender->getLevel()->broadcastLevelEvent($p, LevelSoundEventPack::$args[0], (int) $volume); 
 
@@ -117,7 +117,7 @@ class Main extends PluginBase implements Listener {
                     case "antitle":
                         if ($sender->hasPermission("Announce.title")) {
                             if (isset($args[0]) && isset($args[1])) {
-                                foreach ($this->getServer()->getOnlinePlayers() as $p) {
+                                foreach ($sender->getLevel()->getPlayers() as $p) {
                                     $p->addTitle((string)$args[0], (string)$args[0], 5, 30, 5);
                                 }
                             } else {
@@ -130,7 +130,7 @@ class Main extends PluginBase implements Listener {
                     case "anmsg":
                         if ($sender->hasPermission("Announce.msg")) {
                             if (isset($args[0])) {
-                                foreach ($this->getServer()->getOnlinePlayers() as $p) {
+                                foreach $sender->getLevel()->getPlayers() as $p) {
                                     $this->getServer()->broadcastMessage((string)$args[0]);
                                 }
                             } else {
@@ -144,7 +144,7 @@ class Main extends PluginBase implements Listener {
                     case "anitem":
                         if ($sender->hasPermission("Announce.item")) {
                             if (isset($args[0]) && isset($args[1]) && isset($args[2])) {
-                                foreach ($this->getServer()->getOnlinePlayers() as $p) {
+                                foreach ($sender->getLevel()->getPlayers() as $p) {
                                     $p->getInventory()->addItem(Item::get($args[0], $args[1], $args[2]))->setCustomName((string) $args[3])->setLore([$args[4]]);
                                 }
                             } else {
