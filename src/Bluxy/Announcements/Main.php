@@ -130,7 +130,7 @@ class Main extends PluginBase implements Listener {
                     case "anmsg":
                         if ($sender->hasPermission("Announce.msg")) {
                             if (isset($args[0])) {
-                                foreach $sender->getLevel()->getPlayers() as $p) {
+                                foreach ($sender->getLevel()->getPlayers() as $p) {
                                     $this->getServer()->broadcastMessage((string)$args[0]);
                                 }
                             } else {
