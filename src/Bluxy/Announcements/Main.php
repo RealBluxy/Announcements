@@ -47,7 +47,9 @@ use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 use pocketmine\item\Item;
 use pocketmine\utils\Config;
-use pocketmine\network\protocol\mcpe\PlayerSoundPacket;
+use pocketmine\network\mcpe\protocol\LevelEventPacket;
+use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
+use pocketmine\math\Vector3;
 
 class Main extends PluginBase implements Listener {
     
@@ -88,9 +90,9 @@ class Main extends PluginBase implements Listener {
             bool {
                 switch ($command->getName()) {
                     case "sounds":
-                        //https://www.digminecraft.com/lists/sound_list_pe.php sounds lsit boi
+                        
                         if ($sender->hasPermission("Announcements.sounds")) {
-                            $sender->sendMessage("§a Go To https://www.digminecraft.com/lists/sound_list_pe.php for the sounds list !");
+                            $sender->sendMessage("§a Go To https://github.com/pmmp/PocketMine-MP/blob/stable/src/pocketmine/network/mcpe/protocol/LevelSoundEventPacket.php for the sounds list !");
                         } else {
                             $sender->sendMessage("§cYou Don't have the Permission To Use This Command");
                         }
@@ -99,16 +101,13 @@ class Main extends PluginBase implements Listener {
                         if ($sender->hasPermission("Announce.sound")) {
                             if (isset($args[0])) {
                                 foreach ($this->getServer()->getOnlinePlayers() as $p) {
-                                    $pk = new PlaySoundPacket;
-                                    $pk->soundName = (string)$args[0];
-                                    $pk->volume = 1;
-                                    $pk->pitch = 1;
-                                    $pk->disableRelativeVolume = true;
-                                    $p->dataPacket($pk);
+					$volume = rand();
+          		$sender->getLevel()->broadcastLevelEvent($p, LevelSoundEventPack::$args[0], (int) $volume) 
+
                                     $sender->sendMessage("§a BroadCasted Sound: §e$args[0]");
                                 }
                             } else {
-                                $sender->sendMessage("§cUsage: /ansound <soundname> ");
+                                $sender->sendMessage("§cUsage: /ansound <soundid> ");
                                 $sender->sendMessage("§aPro Tip: Run The Command '/sounds' To Get a List Of Sound You Can BroadCast!");
                             }
                         } else {
@@ -146,7 +145,7 @@ class Main extends PluginBase implements Listener {
                         if ($sender->hasPermission("Announce.item")) {
                             if (isset($args[0]) && isset($args[1]) && isset($args[2])) {
                                 foreach ($this->getServer()->getOnlinePlayers() as $p) {
-                                    $p->getInventory()->addItem(Item::get($args[0], $args[1], $args[2]))->setCustomName((string) $args[3])->setLore((string) [$args[4]]);
+                                    $p->getInventory()->addItem(Item::get($args[0], $args[1], $args[2]))->setCustomName((string) $args[3])->setLore([$args[4]]);
                                 }
                             } else {
                                 $sender->sendMessage("§cUsage: /anitem <itemid> <item meta (if there isn't set it to 0)> <amount> <item custom name(optional)> <item description (optioanal)>");
